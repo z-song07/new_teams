@@ -1,0 +1,10 @@
+# detect new microsoft teams
+$newTeams = Get-AppxPackage MSTeams
+if($newTeams) 
+{
+    Write-Host "DETECTED: New Teams is installed"
+    exit 0
+}else{
+    Write-Host "NO: New Teams is not found"
+    exit 1
+}

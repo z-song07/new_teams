@@ -1,0 +1,11 @@
+# Remediation script
+# Uninstall Teams machine-wide installer
+try{
+    Get-Package -Name "Teams Machine-Wide Installer" | Uninstall-Package
+    Write-Host "Teams Machine-Wide Installer successfully uninstalled."
+    exit 0
+}
+catch{
+    Write-Error "Error uninstalling Teams Machine-Wide Installer: " + $_.Exception.Message
+    exit 1
+}

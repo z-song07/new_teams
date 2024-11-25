@@ -1,0 +1,19 @@
+# Detect Teams Machine-Wide Installer
+
+try{
+    if (Get-Package -Name "Teams Machine-Wide Installer")
+    {
+        Write-Host "FOUND: Teams Machine-Wide Installer found!"
+        exit 0
+    }
+    else
+    {
+        Write-Host "Teams Machine-Wide Installer not found."    
+        exit 1
+
+    }
+}
+catch{
+    Write-Error "Error detecting the Teams Machine-Wide Installer."
+    exit 1
+}

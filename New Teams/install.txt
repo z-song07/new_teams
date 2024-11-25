@@ -1,0 +1,28 @@
+$msix = "$($PSScriptRoot)\MSTeams-x64.msix"
+$destination_path = "C:\ProgramData\Microsoft\NEW-TEAMS-TEMP"
+$exe_path = "$($PSScriptRoot)\teamsbootstrapper.exe"
+
+# create destination directory if not exist
+if(!(Test-Path $destination_path)){
+    mkdir $destination_path
+}
+
+# put the msix file into the destionation directory
+Copy-Item -Path $msix -Destination $destination_path -Force
+
+
+# execute the teamsbootstrapper
+# -p is for execution
+# -o is to output to the destination MSTEams msix
+# -Wait will wait for the process to exit
+# -WindowsStyle Hidden is to hide the powershell window from users 
+try{
+    Start-Process -FilePath $exe_path -ArgumentList "-p", "-o", "$($destination_path)\MSTeams-64.msix" -Wait -WindowStyle Hidden
+
+    Write-Host: "SUCCESS"
+    exit 0
+}
+catch{
+    Write-Host: "Failed"
+    exit 1
+}
